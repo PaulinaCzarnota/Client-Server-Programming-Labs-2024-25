@@ -1,0 +1,24 @@
+# Disk DescriptorFile
+version=1
+CID=cf0e6c6b
+parentCID=ffffffff
+createType="monolithicFlat"
+
+# Extent description
+RW 6291456 FLAT "ubuntu14.04-2-flat.vmdk" 0
+
+# The disk Data Base 
+#DDB
+
+ddb.virtualHWVersion = "4"
+ddb.adapterType="ide"
+ddb.uuid.image="d7f0ea10-22f6-41ee-9070-5d3030196ab9"
+ddb.uuid.parent="00000000-0000-0000-0000-000000000000"
+ddb.uuid.modification="e6b9b32e-afe9-4b28-b0dd-0cdd0450741a"
+ddb.uuid.parentmodification="00000000-0000-0000-0000-000000000000"
+ddb.geometry.cylinders="6241"
+ddb.geometry.heads="16"
+ddb.geometry.sectors="63"
+ddb.geometry.biosCylinders="780"
+ddb.geometry.biosHeads="128"
+ddb.geometry.biosSectors="63"

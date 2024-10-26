@@ -1,0 +1,27 @@
+Ubuntu 14.04.5
+Installed with 512RAM 3 GB fixed disk
+Installed ssh server only
+User: soc
+password : letmein
+
+Start the VM
+1. Goto Ubuntu14.04-1 folder
+2. Double click on Ubuntu14.04-1.vbox
+3. Virtualbox is starting with Ubuntu14.04-1 added
+4. Click on Ubuntu14.04-1 -> start
+
+5. Same applies to Ubuntu14.04-2
+6. Double click on Ubuntu14.04-2.vbox
+7. Virtualbox is starting with Ubuntu14.04-2 added
+8. Click on Ubuntu14.04-2 -> start
+
+Using ssh via putty to connect
+connecting to ubuntu14.04-1
+1. start putty
+2: hostname: localhost port:2122
+3: click open to continue
+
+connecting to ubuntu14.04-2
+1. start putty
+2: hostname: localhost port:2222
+3: click open to continue
