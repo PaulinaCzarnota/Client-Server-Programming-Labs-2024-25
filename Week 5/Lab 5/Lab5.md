@@ -1,32 +1,32 @@
 # Lab 5: Client-Server Application Development Using Berkeley Socket API
 
 ## Purpose
-This lab exercise aims to extend students’ understanding of client-server application development using the Berkeley Socket API through the development of various networked applications. Students will create a simple echo server and client and compile and test their applications in a networked environment.
+This lab exercise aims to extend my understanding of client-server application development using the Berkeley Socket API through developing various networked applications. I created a simple echo server and client, then compiled and tested these applications in a networked environment.
 
 ## Environment Setup
-To ensure the exercises run smoothly, the following networked environment must be in place, as per instructions from a previous lab exercise:
+To ensure the exercises run smoothly, I set up the following networked environment, as per instructions from a previous lab exercise:
 
-- **VM1** should be configured with IPv4 address: **192.168.1.11**
-- **VM2** should be configured with IPv4 address: **192.168.1.12**
+- **VM1** was configured with IPv4 address: **192.168.1.11**
+- **VM2** was configured with IPv4 address: **192.168.1.12**
 
 ### Network Connectivity
-- Both machines should be able to communicate with each other. Use the `ping` command to test connectivity:
+- Both machines were set to communicate with each other. I used the `ping` command to test connectivity:
   
   ```bash
   ping 192.168.1.12  # From VM1 to VM2
   ping 192.168.1.11  # From VM2 to VM1
   ```
 
-- Both machines should have the command-line compiler, `gcc`, installed.
+- Both machines also had the command-line compiler, `gcc`, installed.
 
 ## Steps Involved
-1. Creating a script to simplify the process of compiling code using `gcc`.
-2. Compiling and testing daytime client and server source code.
-3. Writing an Echo client-server application.
+1. I created a script to simplify the process of compiling code using `gcc`.
+2. I compiled and tested daytime client and server source code.
+3. I wrote an Echo client-server application.
 
 ## Exercise 1: Simple Scripting
 ### Overview
-To streamline the compilation process and reduce the chances of errors, we will create a simple script to automate the compilation of C source files.
+To streamline the compilation process and reduce the chances of errors, I created a simple script to automate the compilation of C source files.
 
 ### Instructions
 1. **Create the compile script** on both VMs using a command-line text editor (e.g., `nano`):
@@ -49,22 +49,22 @@ To streamline the compilation process and reduce the chances of errors, we will 
    ls -l compile
    ```
 
-   Ensure that the permissions are set to executable for each user group. If not, change the permissions using:
+   I ensured that the permissions were set to executable for each user group. If not, I changed the permissions using:
 
    ```bash
    chmod +x compile
    ```
 
-   For more information on file permissions, visit: [Linux File Permissions Cheat Sheet](https://www.stationx.net/linux-file-permissions-cheat-sheet/).
+   For more information on file permissions, I referred to the [Linux File Permissions Cheat Sheet](https://www.stationx.net/linux-file-permissions-cheat-sheet/).
 
 ## Exercise 2: Testing the Compile Script on Daytime Application
 ### Overview
-We will use the provided source files for the daytime client and server applications to ensure consistency in future labs.
+I used the provided source files for the daytime client and server applications to ensure consistency in future labs.
 
 ### Instructions
 1. **Download the source files**:
-   - On VM1, download `daytimeClient2.c` using WinSCP.
-   - On VM2, download `daytimeServer2.c` using WinSCP.
+   - On VM1, I downloaded `daytimeClient2.c` using WinSCP.
+   - On VM2, I downloaded `daytimeServer2.c` using WinSCP.
 
 2. **Compile the daytime client application** on VM1 using the script:
 
@@ -72,7 +72,7 @@ We will use the provided source files for the daytime client and server applicat
    ./compile daytimeClient2
    ```
 
-   **Note:** Do not include the file extension `.c` when passing the filename to the script. The command-line argument `daytimeClient2` will replace the `$1` variable in the script.
+   **Note:** I did not include the file extension `.c` when passing the filename to the script, as the command-line argument `daytimeClient2` replaced the `$1` variable in the script.
 
 3. **Compile the daytime server application** on VM2 in the same manner:
 
@@ -80,42 +80,42 @@ We will use the provided source files for the daytime client and server applicat
    ./compile daytimeServer2
    ```
 
-4. **Test the applications** across the networked environment to ensure that the date and time are returned to the client application.
+4. **Test the applications** across the networked environment to ensure that the date and time were returned to the client application.
 
 ## Exercise 3: Compiling the Echo Client-Server Application
 ### Overview
-In this exercise, we will develop an echo client-server application that reads input from the command line, establishes a connection, and sends messages between the client and server.
+In this exercise, I developed an echo client-server application that reads input from the command line, establishes a connection, and sends messages between the client and server.
 
 ### Instructions
 1. **Create copies of the source files**:
-   - On VM1, create a copy of the daytime client source file:
+   - On VM1, I created a copy of the daytime client source file:
 
      ```bash
      cp daytimeClient2.c echoClient.c
      ```
 
-   - On VM2, create a copy of the daytime server source file:
+   - On VM2, I created a copy of the daytime server source file:
 
      ```bash
      cp daytimeServer2.c echoServer.c
      ```
 
 2. **Modify the `echoClient.c` file** on VM1:
-   - Declare a new buffer:
+   - I declared a new buffer:
 
      ```c
      char sendbuffer[BUFSIZE];
      ```
 
-   - Read a fourth argument from the command line:
+   - I read a fourth argument from the command line:
 
      ```c
      char *echoString = argv[3];
      ```
 
-   - Check for the correct number of command-line arguments. 
+   - I checked for the correct number of command-line arguments. 
 
-   - After `connect()`, include a call to `send()` with the format from `daytimeServer2.c`. Use `snprintf` to format the buffer:
+   - After `connect()`, I included a call to `send()` with the format from `daytimeServer2.c`. I used `snprintf` to format the buffer:
 
      ```c
      snprintf(sendbuffer, sizeof(sendbuffer), "%s\r\n", echoString);
@@ -123,14 +123,14 @@ In this exercise, we will develop an echo client-server application that reads i
      ```
 
 3. **Modify the `echoServer.c` file** on VM2:
-   - Declare a new buffer and variable:
+   - I declared a new buffer and variable:
 
      ```c
      char recvbuffer[BUFSIZE];
      int numBytes = 0;
      ```
 
-   - After `accept()`, add a call to `recv()` before sending back to the client.
+   - After `accept()`, I added a call to `recv()` before sending back to the client.
 
 4. **Compile and test the echoClient and echoServer applications** using the compile script from Exercise 1:
 
@@ -146,7 +146,7 @@ In this exercise, we will develop an echo client-server application that reads i
    ```
 
 ### Troubleshooting
-- If the string does not appear on the client screen, look for the two characters appended to the echo string. You may use `strstr()` to locate these characters and exit the `recv()` while loop appropriately.
-- Ensure both the server and client are running in the correct environment (correct VMs).
-- Check firewall settings to ensure that the specified port is open.
-- Verify the server IP and port number are correctly entered when running the client.
+- If the string didn’t appear on the client screen, I checked for the two characters appended to the echo string. I used `strstr()` to locate these characters and exited the `recv()` while loop appropriately.
+- I ensured both the server and client were running in the correct environment (correct VMs).
+- I checked firewall settings to ensure that the specified port was open.
+- I verified the server IP and port number were correctly entered when running the client.
