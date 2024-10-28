@@ -22,3 +22,4 @@ In this lab, I explored TCP connections using the `netstat` command to monitor a
 
 ### Lab 7: Basic HTTP Server  
 I created a basic HTTP server by modifying the echo server code to handle HTTP requests. This involved setting up functions to parse incoming requests, determine the requested resource, and formulate appropriate HTTP responses. I tested the server using both the HTTP client developed in the previous lab and a web browser, confirming that it could serve valid requests and return error messages for invalid ones. This lab deepened my knowledge of web server functionality and HTTP interactions.
+ 
