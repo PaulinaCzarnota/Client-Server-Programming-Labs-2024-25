@@ -1,6 +1,6 @@
 This repository contains a collection of labs from the Client-Server Programming module, completed during my third year of the Computer Science program at TU Dublin.
 
-## Lab Summaries
+# Lab Summaries
 
 ### Lab 1: Ubuntu 14.04.5 Setup & Basic Linux Commands  
 In this lab, I set up an Ubuntu 14.04.5 server with SSH access, focusing on configuring the system for remote management. I practiced essential Linux commands such as `ls`, `cd`, `mkdir`, and `rm`, which allowed me to navigate the file system and manage directories and files effectively. This foundational knowledge will support my work in subsequent labs, ensuring I can operate efficiently within the Linux environment.
