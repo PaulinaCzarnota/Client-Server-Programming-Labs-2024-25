@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>dumpcap - The Wireshark Network Analyzer 0.99.6a</title>
+<link rev="made" href="mailto:gerrit@familiehaase.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+<!--
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsys">SYNOPSYS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#options">OPTIONS</a></li>
+	<li><a href="#capture_filter_syntax">CAPTURE FILTER SYNTAX</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+	<li><a href="#notes">NOTES</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+</ul>
+-->
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>dumpcap - Dump network traffic</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsys">SYNOPSYS</a></h1>
+<p><strong>dumpcap</strong>
+[&nbsp;<strong>-a</strong>&nbsp;&lt;capture&nbsp;autostop&nbsp;condition&gt;&nbsp;]&nbsp;...
+[&nbsp;<strong>-b</strong>&nbsp;&lt;capture&nbsp;ring&nbsp;buffer&nbsp;option&gt;]&nbsp;...
+[&nbsp;<strong>-B</strong>&nbsp;&lt;capture&nbsp;buffer&nbsp;size&nbsp;(Win32&nbsp;only)&gt;&nbsp;]&nbsp;
+[&nbsp;<strong>-c</strong>&nbsp;&lt;capture&nbsp;packet&nbsp;count&gt;&nbsp;]
+[&nbsp;<strong>-D</strong>&nbsp;]
+[&nbsp;<strong>-f</strong>&nbsp;&lt;capture&nbsp;filter&gt;&nbsp;]
+[&nbsp;<strong>-h</strong>&nbsp;]
+[&nbsp;<strong>-i</strong>&nbsp;&lt;capture&nbsp;interface&gt;|-&nbsp;] 
+[&nbsp;<strong>-I</strong>&nbsp;&lt;l|s&gt;&nbsp;]
+[&nbsp;<strong>-L</strong>&nbsp;]
+[&nbsp;<strong>-p</strong>&nbsp;]
+[&nbsp;<strong>-s</strong>&nbsp;&lt;capture&nbsp;snaplen&gt;&nbsp;]
+[&nbsp;<strong>-v</strong>&nbsp;]
+[&nbsp;<strong>-w</strong>&nbsp;&lt;outfile&gt;&nbsp;]
+[&nbsp;<strong>-y</strong>&nbsp;&lt;capture&nbsp;link&nbsp;type&gt;&nbsp;]</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p><strong>Dumpcap</strong> is a network traffic dump tool.  It lets you capture packet
+data from a live network and write the packets to a file.  <strong>Dumpcap</strong>'s 
+native capture file format is <strong>libpcap</strong> format, which is also the format 
+used by <strong>Wireshark</strong>, <strong>tcpdump</strong> and various other tools.</p>
+<p>Without any options set it will 
+use the pcap library to capture traffic from the first available network 
+interface and writes the received raw packet data, along with the packets'
+time stamps into a libpcap file.</p>
+<p>If the <strong>-w</strong> option is not specified, <strong>Dumpcap</strong> writes to a newly 
+created libpcap file with a randomly chosen name. 
+If the <strong>-w</strong> option is specified, <strong>Dumpcap</strong> writes to the file
+specified by that option.</p>
+<p>Packet capturing is performed with the pcap library.  The capture filter
+syntax follows the rules of the pcap library.</p>
+<p>
+</p>
+<hr />
+<h1><a name="options">OPTIONS</a></h1>
+<dl>
+<dt><strong><a name="item__2da__3ccapture_autostop_condition_3e">-a  &lt;capture autostop condition&gt;</a></strong><br />
+</dt>
+<dd>
+Specify a criterion that specifies when <strong>Dumpcap</strong> is to stop writing
+to a capture file.  The criterion is of the form <em>test</em><strong>:</strong><em>value</em>,
+where <em>test</em> is one of:
+</dd>
+<dd>
+<p><strong>duration</strong>:<em>value</em> Stop writing to a capture file after <em>value</em> seconds have elapsed.</p>
+</dd>
+<dd>
+<p><strong>filesize</strong>:<em>value</em> Stop writing to a capture file after it reaches a size of <em>value</em>
+kilobytes (where a kilobyte is 1024 bytes). If this option 
+is used together with the -b option, dumpcap will stop writing to the 
+current capture file and switch to the next one if filesize is reached.</p>
+</dd>
+<dd>
+<p><strong>files</strong>:<em>value</em> Stop writing to capture files after <em>value</em> number of files were written.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2db__3ccapture_ring_buffer_option_3e">-b  &lt;capture ring buffer option&gt;</a></strong><br />
+</dt>
+<dd>
+Cause <strong>Dumpcap</strong> to run in ``multiple files'' mode.  In ``multiple files'' mode, 
+<strong>Dumpcap</strong> will write to several capture files. When the first capture file 
+fills up, <strong>Dumpcap</strong> will switch writing to the next file and so on.
+</dd>
+<dd>
+<p>The created filenames are based on the filename given with the <strong>-w</strong> option, the number of 
+the file and on the creation date and time, 
+e.g. outfile_00001_20050604120117.pcap, outfile_00001_20050604120523.pcap, ...</p>
+</dd>
+<dd>
+<p>With the <em>files</em> option it's also possible to form a ``ring buffer''. 
+This will fill up new files until the number of files specified, 
+at which point <strong>Dumpcap</strong> will discard the data in the first file and start 
+writing to that file and so on. If the <em>files</em> option is not set,
+new files filled up until one of the capture stop conditions match (or 
+until the disk if full).</p>
+</dd>
+<dd>
+<p>The criterion is of the form <em>key</em><strong>:</strong><em>value</em>,
+where <em>key</em> is one of:</p>
+</dd>
+<dd>
+<p><strong>duration</strong>:<em>value</em> switch to the next file after <em>value</em> seconds have 
+elapsed, even if the current file is not completely filled up.</p>
+</dd>
+<dd>
+<p><strong>filesize</strong>:<em>value</em> switch to the next file after it reaches a size of 
+<em>value</em> kilobytes (where a kilobyte is 1024 bytes).</p>
+</dd>
+<dd>
+<p><strong>files</strong>:<em>value</em> begin again with the first file after <em>value</em> number of 
+files were written (form a ring buffer).</p>
+</dd>
+<p></p>
+<dt><strong><a name="item_size">-B  &lt;capture buffer size (Win32 only)&gt;</a></strong><br />
+</dt>
+<dd>
+Win32 only: set capture buffer size (in MB, default is 1MB). This is used by the
+the capture driver to buffer packet data until that data can be written to 
+disk. If you encounter packet drops while capturing, try to increase this size.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dc__3ccapture_packet_count_3e">-c  &lt;capture packet count&gt;</a></strong><br />
+</dt>
+<dd>
+Set the maximum number of packets to read when capturing live
+data.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dd">-D</a></strong><br />
+</dt>
+<dd>
+Print a list of the interfaces on which <strong>Dumpcap</strong> can capture, and
+exit.  For each network interface, a number and an
+interface name, possibly followed by a text description of the
+interface, is printed.  The interface name or the number can be supplied
+to the <strong>-i</strong> option to specify an interface on which to capture.
+</dd>
+<dd>
+<p>This can be useful on systems that don't have a command to list them  
+(e.g., Windows systems, or UNIX systems lacking <strong>ifconfig -a</strong>);
+the number can be useful on Windows 2000 and later systems, where the
+interface name is a somewhat complex string.</p>
+</dd>
+<dd>
+<p>Note that ``can capture'' means that <strong>Dumpcap</strong> was able to open
+that device to do a live capture. Depending on your system you may need to 
+run dumpcap from an account with special privileges (for example, as root) 
+to be able to capture network traffic.
+If ``<strong>dumpcap -D</strong>'' is not run from such an account, it will not list 
+any interfaces.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2df__3ccapture_filter_3e">-f  &lt;capture filter&gt;</a></strong><br />
+</dt>
+<dd>
+Set the capture filter expression.
+</dd>
+<dd>
+<p>The entire filter expression must be specified as a single argument (which means 
+that if it contains spaces, it must be quoted).</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dh">-h</a></strong><br />
+</dt>
+<dd>
+Print the version and options and exits.
+</dd>
+<p></p>
+<dt><strong><a name="item__2di__3ccapture_interface_3e_7c_2d">-i  &lt;capture interface&gt;|-</a></strong><br />
+</dt>
+<dd>
+Set the name of the network interface or pipe to use for live packet
+capture.
+</dd>
+<dd>
+<p>Network interface names should match one of the names listed in
+``<strong>dumpcap -D</strong>'' (described above); a number, as reported by
+``<strong>dumpcap -D</strong>'', can also be used.  If you're using UNIX, ``<strong>netstat
+-i</strong>'' or ``<strong>ifconfig -a</strong>'' might also work to list interface names,
+although not all versions of UNIX support the <strong>-a</strong> option to <strong>ifconfig</strong>.</p>
+</dd>
+<dd>
+<p>If no interface is specified, <strong>Dumpcap</strong> searches the list of
+interfaces, choosing the first non-loopback interface if there are any
+non-loopback interfaces, and choosing the first loopback interface if
+there are no non-loopback interfaces. If there are no interfaces at all,
+<strong>Dumpcap</strong> reports an error and doesn't start the capture.</p>
+</dd>
+<dd>
+<p>Pipe names should be either the name of a FIFO (named pipe) or ``-'' to
+read data from the standard input.  Data read from pipes must be in
+standard libpcap format.</p>
+</dd>
+<dd>
+<p>Note: the Win32 version of <strong>Dumpcap</strong> doesn't support capturing from
+pipes or stdin!</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2di">-I</a></strong><br />
+</dt>
+<dd>
+If run with the <strong>l</strong> argument, print a verbose, machine-readable interface
+list, similar to the <strong>-D</strong> flag.
+</dd>
+<dd>
+<p>If run with the <strong>s</strong> argument, print statistics for each interface every
+second until the program terminates.</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dl">-L</a></strong><br />
+</dt>
+<dd>
+List the data link types supported by the interface and exit. The reported
+link types can be used for the <strong>-y</strong> option.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dp">-p</a></strong><br />
+</dt>
+<dd>
+<em>Don't</em> put the interface into promiscuous mode.  Note that the
+interface might be in promiscuous mode for some other reason; hence,
+<strong>-p</strong> cannot be used to ensure that the only traffic that is captured is
+traffic sent to or from the machine on which <strong>Dumpcap</strong> is running,
+broadcast traffic, and multicast traffic to addresses received by that
+machine.
+</dd>
+<p></p>
+<dt><strong><a name="item__2ds__3ccapture_snaplen_3e">-s  &lt;capture snaplen&gt;</a></strong><br />
+</dt>
+<dd>
+Set the default snapshot length to use when capturing live data. 
+No more than <em>snaplen</em> bytes of each network packet will be read into
+memory, or saved to disk.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dv">-v</a></strong><br />
+</dt>
+<dd>
+Print the version and exit.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dw__3coutfile_3e">-w  &lt;outfile&gt;</a></strong><br />
+</dt>
+<dd>
+Write raw packet data to <em>outfile</em>.
+</dd>
+<dd>
+<p>NOTE: The usage of ``-'' for stdout is not allowed here!</p>
+</dd>
+<p></p>
+<dt><strong><a name="item__2dy__3ccapture_link_type_3e">-y  &lt;capture link type&gt;</a></strong><br />
+</dt>
+<dd>
+Set the data link type to use while capturing packets.  The values
+reported by <strong>-L</strong> are the values that can be used.
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="capture_filter_syntax">CAPTURE FILTER SYNTAX</a></h1>
+<p>See the manual page of tcpdump(8).</p>
+<p>
+</p>
+<hr />
+<h1><a name="see_also">SEE ALSO</a></h1>
+<p>wireshark(1), tshark(1), editcap(1), mergecap(1), capinfos(1), tcpdump(8),
+<code>pcap(3)</code></p>
+<p>
+</p>
+<hr />
+<h1><a name="notes">NOTES</a></h1>
+<p><strong>Dumpcap</strong> is part of the <strong>Wireshark</strong> distribution.  The latest version
+of <strong>Wireshark</strong> can be found at <a href="http://www.wireshark.org">http://www.wireshark.org</a>.</p>
+<p>HTML versions of the Wireshark project man pages are available at:
+<a href="http://www.wireshark.org/docs/man-pages">http://www.wireshark.org/docs/man-pages</a>.</p>
+<p>
+</p>
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p><strong>Dumpcap</strong> is derived from the <strong>Wireshark</strong> capturing engine code; 
+see the list of
+authors in the <strong>Wireshark</strong> man page for a list of authors of that code.</p>
+
+</body>
+
+</html>
