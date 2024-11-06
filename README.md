@@ -23,9 +23,7 @@ This lab reinforced the understanding of TCP connections using the `netstat` com
 ### Lab 7: Basic HTTP Server
 In this lab, we created a basic HTTP server that could respond to HTTP GET requests. We started by modifying the `echoServer.c` source code and then implemented basic HTTP response handling, including providing a 200 OK response for a valid resource and a 404 error response for missing resources. The server handled incoming HTTP requests, extracted the necessary information, and sent appropriate responses to clients. We tested the server using both a command-line HTTP client and a web browser.
 
----
-
-## Environment Setup
+# Environment Setup
 
 To ensure the exercises run smoothly, the following networked environment must be in place, as per instructions from previous lab exercises:
 
