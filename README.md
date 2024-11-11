@@ -3,29 +3,32 @@ This repository contains a collection of labs from the Client-Server Programming
 # Lab Summaries
 
 ### Lab 1: Ubuntu 14.04.5 Setup & Basic Linux Commands
-This lab involves setting up a Virtual Machine (VM) running Ubuntu 14.04.5 and connecting to it via SSH. The lab covers essential Linux commands for directory and file management, system information, network configurations, and process management. Tools like PuTTY are used for SSH access, and participants learn to interact with the terminal to execute basic commands.
+In this lab, I set up a Virtual Machine (VM) running Ubuntu 14.04.5 and connected to it via SSH. The lab covers essential Linux commands for directory and file management, system information, network configurations, and process management. Tools like PuTTY were used for SSH access, and I learned how to interact with the terminal to execute basic commands.
 
 ### Lab 2: Network Traffic Analysis with Wireshark
-This lab focuses on using Wireshark to capture and analyze network traffic. Participants generate network traffic by visiting websites and examine the HTTP packets captured. Key tasks include installing Wireshark, analyzing traffic through various protocol layers, and understanding the raw data transmitted over the network.
+This lab focused on using Wireshark to capture and analyze network traffic. I generated network traffic by visiting websites and examined the HTTP packets captured. Key tasks included installing Wireshark, analyzing traffic through various protocol layers, and understanding the raw data transmitted over the network.
 
 ### Lab 3: Setting up the Virtual Network Environment
-In this lab, participants configure a virtual network environment using Oracle VM VirtualBox. Two VMs are downloaded and set up, ensuring proper network adapter configurations and IP addressing. The VMs are connected via SSH, and tools like the GCC compiler are installed to prepare the environment for further client-server development exercises.
+In this lab, I configured a virtual network environment using Oracle VM VirtualBox. Two VMs were downloaded and set up with proper network adapter configurations and IP addressing. The VMs were connected via SSH, and tools like the GCC compiler were installed to prepare the environment for further client-server development exercises.
 
 ### Lab 4: Basic Client-Server Application Development with Berkeley Sockets
-This lab introduces client-server programming using the Berkeley Socket API. A simple client-server application is developed where the client requests the server’s date and time. The necessary directory structure is created, and the source code for the client and server is written and compiled. The client and server are then executed on separate VMs to ensure successful communication between the two using TCP/IP sockets.
+This lab introduced me to client-server programming using the Berkeley Socket API. I developed a simple client-server application where the client requests the server’s date and time. I created the necessary directory structure, wrote and compiled the source code for both the client and server, and ensured successful communication between them using TCP/IP sockets.
 
 ### Lab 5: Client-Server Application Development Using Berkeley Socket API
-In this lab, participants extend their knowledge of client-server application development using the Berkeley Socket API. A simple echo server and client are created to communicate over a networked environment. The lab also involves writing a script to automate the process of compiling C source files, testing daytime client and server applications, and modifying the echo server and client to handle input messages.
+In this lab, I extended my knowledge of client-server application development using the Berkeley Socket API. A simple echo server and client were created to communicate over a network. The lab also involved writing a script to automate the compilation of C source files, testing daytime client-server applications, and modifying the echo server/client to handle input messages.
 
 ### Lab 6: TCP Connections and HTTP Protocol
-This lab reinforces the understanding of TCP connections using the `netstat` command and introduces the basics of HTTP communication using telnet. Client-server applications developed in previous labs are run and modified to integrate HTTP interaction. The lab also covers using `netstat` to observe TCP connection states and HTTP requests using telnet and command-line HTTP clients.
+This lab reinforced my understanding of TCP connections using the `netstat` command and introduced the basics of HTTP communication using telnet. I ran and modified client-server applications from previous labs to integrate HTTP interaction. The lab also covered using `netstat` to observe TCP connection states and using telnet and command-line HTTP clients to make HTTP requests.
 
 ### Lab 7: Basic HTTP Server
-In this lab, participants create a basic HTTP server capable of responding to HTTP GET requests. The lab begins by modifying the `echoServer.c` source code and then implements basic HTTP response handling, including providing a 200 OK response for a valid resource and a 404 error response for missing resources. The server handles incoming HTTP requests, extracts necessary information, and sends appropriate responses to clients. The server is tested using both a command-line HTTP client and a web browser.
+In this lab, I created a basic HTTP server capable of responding to HTTP GET requests. The server was modified from the `echoServer.c` source code and implemented basic HTTP response handling. It returned a `200 OK` response for valid resources and a `404 error` response for missing ones. I tested the server using both a command-line HTTP client and a web browser.
 
-# Environment Setup
+### Lab 8: More Complex HTTP Server
+In this lab, I extended the basic HTTP server to serve files from the local file system. The server now handles HTTP requests by returning the requested file along with HTTP headers like `Content-Length`, `Cache-Control`, and `Connection`. If the requested file is not found, the server returns a `404 Not Found` page. I served `index.html` for valid requests and `error.html` for errors, testing the server with a browser or `curl`.
 
-To ensure the exercises run smoothly, the following networked environment must be in place, as per instructions from previous lab exercises:
+## Environment Setup
+
+To ensure the exercises run smoothly, the following networked environment must be in place as per instructions from previous lab exercises:
 
 - **VM1** should be configured with IPv4 address: **192.168.1.11**
 - **VM2** should be configured with IPv4 address: **192.168.1.12**
