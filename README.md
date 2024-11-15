@@ -26,10 +26,15 @@ In this lab, I created a basic HTTP server capable of responding to HTTP GET req
 ### Lab 8: More Complex HTTP Server
 In this lab, I extended the basic HTTP server to serve files from the local file system. The server now handles HTTP requests by returning the requested file along with HTTP headers like `Content-Length`, `Cache-Control`, and `Connection`. If the requested file is not found, the server returns a `404 Not Found` page. I served `index.html` for valid requests and `error.html` for errors, testing the server with a browser or `curl`.
 
+### Lab 9: Using Hostnames
+In this lab, I worked with hostnames for network communication in client-server applications:
+1. **Exercise 1:** I compiled C programs to resolve hostnames to IP addresses using `getaddrinfo` and printed the IPs for hostnames like `www.google.com` and `www.tudublin.ie`.
+2. **Exercise 2:** I modified a basic HTTP client to use hostnames instead of IP addresses, allowing it to connect to servers like TU Dublin's webserver and fetch HTML data.
+3. **Exercise 3:** I edited the `/etc/hosts` file on VM1 to map VM2's IP address to a hostname (`ubuntu1404-2`), enabling hostname-based connections between the two VMs.
+This lab helped me better understand hostname resolution and its use in networked applications.
+
 ## Environment Setup
-
 To ensure the exercises run smoothly, the following networked environment must be in place as per instructions from previous lab exercises:
-
 - **VM1** should be configured with IPv4 address: **192.168.1.11**
 - **VM2** should be configured with IPv4 address: **192.168.1.12**
 
