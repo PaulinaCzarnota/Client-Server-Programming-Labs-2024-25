@@ -1,4 +1,4 @@
-# Lab 12 - TCP Operations
+# Lab 12: TCP Operations - Opening and Closing Connections  
 
 ## Overview
 This lab demonstrates how TCP manages connection establishment, data transfer, and connection termination using the `open_close.pcap` capture file in Wireshark. The exercise involves analyzing TCP messages, including `SYN`, `ACK`, `FIN`, and calculating sequence (`Seq`) and acknowledgment (`Ack`) values.  
