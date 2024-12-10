@@ -43,6 +43,9 @@ This lab emphasized using `tcpdump` for efficient packet capturing and leveragin
 ### Lab 11: CliAddr Netstat
 This lab focused on creating a basic HTTP server in C to log client address information (IP and port) and respond to HTTP GET requests. The server returned a `200 OK` response for `/index.html` and a `404 Not Found` for other URIs. Using the `netstat` utility, I inspected TCP states (`LISTEN`, `ESTABLISHED`) and buffer data in `Recv-Q` and `Send-Q`. The server used `getchar()` to pause connections for inspection. This lab reinforced key concepts in TCP socket programming, HTTP response handling, and network diagnostics.
 
+### Lab 12: TCP Operations - Opening and Closing Connections  
+In this lab, I analyzed TCP operations using Wireshark and the `open_close.pcap` file. The focus was on understanding TCP’s three-way handshake, data transfer, and connection termination using `SYN`, `ACK`, and `FIN` packets. I calculated sequence (`Seq`) and acknowledgment (`Ack`) values, traced an HTTP request/response exchange, and verified proper TCP connection termination initiated by the server. This lab deepened my knowledge of TCP packet structure, acknowledgment tracking, and client-server communication processes.
+
 ## Environment Setup
 To ensure the exercises run smoothly, the following networked environment must be in place as per instructions from previous lab exercises:
 - **VM1** should be configured with IPv4 address: **192.168.1.11**
